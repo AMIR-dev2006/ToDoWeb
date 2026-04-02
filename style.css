@@ -1,0 +1,192 @@
+@font-face {
+    font-family: 'BrickSans';
+    src: url('/fonts/NTBrickSans.ttf'); /* تأكد من المسار */
+}
+
+:root {
+    --p: 4px; /* وحدة البيكسل */
+    --border-y: calc(var(--p) * 1.5); /* سمك الإطار العلوي والسفلي */
+    --border-x: calc(var(--border-y) / 2); /* سمك الإطار الجانبي */
+}
+/* التعديل الخاص بالهاتف (شاشات أقل من 640px) */
+@media (max-width: 640px) {
+    :root {
+        --p: 3px; /* تصغير حجم المربع الواحد لجعل الزوايا أدق وأصغر */
+        --border-y: calc(var(--p) * 2); /* يمكن زيادة التناسب لجعلها واضحة */
+    }
+    
+
+}
+
+body {
+    background-color: #EFE6F7; /* لون الخلفية العام من صورتك */
+    font-family: 'BrickSans', monospace;
+}
+
+/* القطعة الهندسية (المكون الأساسي)
+  تستخدم متغير --b-color لكي تتلون حسب الحاجة!
+*/
+.pixel-box {
+    position: relative;
+    --b-color: #C4B5E3; /* اللون الافتراضي للإطار (بنفسجي فاتح للمهام) */
+    --b-color2: #5E17EB; /* اللون الافتراضي للإطار (بنفسجي غامق للمهام المكتملة) */
+    background-color: var(--b-color);
+    
+    padding: var(--border-y) var(--border-x);
+    
+    /* درجات الزوايا تأخذ لونها من المتغير تلقائياً */
+    box-shadow: 
+        calc(var(--p) * -2) 0 0 calc(var(--p) * -1) var(--b-color), 
+        calc(var(--p) * 2) 0 0 calc(var(--p) * -1) var(--b-color),
+        0 calc(var(--p) * -2) 0 calc(var(--p) * -1) var(--b-color),
+        0 calc(var(--p) * 2) 0 calc(var(--p) * -1) var(--b-color),
+        
+        calc(var(--p) * -3) 0 0 calc(var(--p) * -2) var(--b-color),
+        calc(var(--p) * 3) 0 0 calc(var(--p) * -2) var(--b-color),
+        0 calc(var(--p) * -3) 0 calc(var(--p) * -2) var(--b-color),
+        0 calc(var(--p) * 3) 0 calc(var(--p) * -2) var(--b-color);
+}
+
+/* الطبقة الداخلية (الخلفية البيضاء/الفاتحة مع القص) */
+.pixel-inner {
+    --i-bg: #F4EDFB; /* اللون الافتراضي لداخل المهمة */
+    background-color: var(--i-bg);
+    height: 100%;
+    
+   /* القص الهندسي */
+    clip-path: polygon(
+        calc(var(--p) * 2) 0, calc(var(--p) * 2) var(--p), var(--p) var(--p), var(--p) calc(var(--p) * 2), 0 calc(var(--p) * 2),
+        0 calc(100% - var(--p) * 2), var(--p) calc(100% - var(--p) * 2), var(--p) calc(100% - var(--p)), calc(var(--p) * 2) calc(100% - var(--p)), calc(var(--p) * 2) 100%,
+        calc(100% - var(--p) * 2) 100%, calc(100% - var(--p) * 2) calc(100% - var(--p)), calc(100% - var(--p)) calc(100% - var(--p)), calc(100% - var(--p)) calc(100% - var(--p) * 2), 100% calc(100% - var(--p) * 2),
+        100% calc(var(--p) * 2), calc(100% - var(--p)) calc(var(--p) * 2), calc(100% - var(--p)) var(--p), calc(100% - var(--p) * 2) var(--p), calc(100% - var(--p) * 2) 0
+    );
+}
+
+/* تخصيص زر ADD
+  نقوم فقط بتغيير المتغيرات اللونية، والكود الهندسي يعمل لوحده!
+*/
+.btn-add {
+    --b-color: #4A00E0; /* إطار بنفسجي غامق جداً */
+    cursor: pointer;
+}
+.btn-add .pixel-inner {
+    --i-bg: #EFE6F7; /* حشوة بنفسجية ساطعة */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:  #5E17EB;
+}
+.btn-add:hover .pixel-inner {
+    --i-bg: #C4B5E3; /* تأثير عند مرور الفأرة */
+}
+
+* {
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    -webkit-font-smoothing: none;
+}
+:root {
+    --fripy-purple: #5e17eb; /* لونك البنفسجي المميز */
+}
+
+/* 1. إخفاء خانة الاختيار الأصلية القبيحة */
+.hidden-pixel-input {
+    display: none;
+}
+
+/* 2. تنسيق الواجهة الرسومية (UI) لخانة الاختيار */
+.pixel-checkbox-display {
+    width: 50px; /* حجم الدائرة المكسرة */
+    height: 52px;
+   
+    
+    
+    cursor: pointer;
+    background: transparent; /* خلفية بيضاء لخانة الاختيار */
+
+    /* صنع الدائرة المكسرة (المقصوصة) بنفس الأسلوب المعتمد */
+    border: 4px solid var(--b-color);
+    box-shadow: 
+        calc(var(--p) * -2) 0 0 calc(var(--p) * -1) var(--b-color), 
+        calc(var(--p) * 2) 0 0 calc(var(--p) * -1) var(--b-color),
+        0 calc(var(--p) * -2) 0 calc(var(--p) * -1) var(--b-color),
+        0 calc(var(--p) * 2) 0 calc(var(--p) * -1) var(--b-color),
+        
+        calc(var(--p) * -3) 0 0 calc(var(--p) * -2) var(--b-color),
+        calc(var(--p) * 3) 0 0 calc(var(--p) * -2) var(--b-color),
+        0 calc(var(--p) * -3) 0 calc(var(--p) * -2) var(--b-color),
+        0 calc(var(--p) * 3) 0 calc(var(--p) * -2) var(--b-color);
+    
+    image-rendering: pixelated; /* الحفاظ على حدة البيكسل */
+}
+
+/* 3. تنسيق علامة الصح SVG */
+@keyframes checkmarkPop {
+    0% {
+        opacity: 0;
+        transform: scale(3);
+        rotate: -45deg;
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        
+    }
+
+}
+
+.checkmark-icon {
+    width: 100%;
+    height: 100%;
+    visibility: hidden; /* مخفية في الحالة الطبيعية */
+    image-rendering: pixelated;
+}
+
+
+/* 4. السحر البرمجي (The Logic) */
+/* عندما يتم تحديد الـ input (checked)، نغير الـ UI */
+
+/* إظهار علامة الصح */
+.hidden-pixel-input:checked + .pixel-checkbox-display .checkmark-icon {
+    visibility: visible;
+    animation: checkmarkPop 0.3s ease-out;
+}
+
+/* ربط النص (Strike-through) بمجرد الاختيار */
+.hidden-pixel-input:checked ~ .task-text {
+    text-decoration: line-through;
+    color: gray;
+}
+
+/* تنسيق نص المهمة */
+.task-text {
+    position: relative;
+    transition: color 0.2s;
+    display: inline-block;
+    left: 19Px;
+}
+
+/* رسم الخط البنفسجي الغليظ (مخفي في البداية) */
+.task-text::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 55%; /* مكان الخط فوق النص */
+    width: 0px; /* يبدأ بطول صفر */
+    height: 4px; /* سمك الخط (يمكنك زيادته لـ 6px إذا أردته أغلظ) */
+    background-color: var(--fripy-purple);
+    image-rendering: pixelated;
+   /* حركة أنيميشن لطيفة عند التشطيب */
+    transition: 0.5s ease-in-out;
+    pointer-events: none;
+}
+
+/* السحر البرمجي عند عمل Check */
+.hidden-pixel-input:checked ~ .task-text {
+    color: #a1a1a1; /* تغيير لون النص ليصبح باهتاً قليلًا */
+}
+
+.hidden-pixel-input:checked ~ .task-text::after {
+    width: 100%; /* الخط يمتد ليغطي كامل النص */
+}

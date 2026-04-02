@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg1"
+   width="121"
+   height="81"
+   viewBox="0 0 121 81"
+   sodipodi:docname="checkmarksuper.svg"
+   inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="1.3834766"
+     inkscape:cx="66.13773"
+     inkscape:cy="45.537454"
+     inkscape:window-width="1536"
+     inkscape:window-height="792"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g1" />
+  <g
+     inkscape:groupmode="layer"
+     inkscape:label="Image"
+     id="g1"
+     transform="translate(-52,-72)">
+    <path
+       style="fill:#5e17eb;fill-opacity:1"
+       d="M 91,143.5 V 134 H 81.536212 72.072424 L 71.786212,124.25 71.5,114.5 61.75,114.21379 52,113.92758 V 102.46379 91 h 12 12 v 10 10 h 9.5 9.5 v 9.5 9.5 h 8 8 v -9.5 -9.5 h 9.5 9.5 V 101 91 h 9.5 9.5 V 81.5 72 h 12 12 V 83.5 95 h -10 -10 v 9.5 9.5 h -9.5 -9.5 v 10 10 h -10 -10 v 9.5 9.5 H 102.5 91 Z"
+       id="path1" />
+  </g>
+</svg>
