@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'BrickSans';
-    src: url('/fonts/NTBrickSans.ttf'); /* تأكد من المسار */
+    src: url('./fonts/NTBrickSans.ttf'); /* تأكد من المسار */
 }
 
 :root {
