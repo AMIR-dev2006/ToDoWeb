@@ -1,0 +1,388 @@
+:root {
+  --p: 4px;
+  --border-y: calc(var(--p) * 1.5);
+  --border-x: calc(var(--border-y) / 2);
+  --b-color: #c4b5e3;
+  --b-color2: #5e17eb;
+  --i-bg: #f4edfb;
+  --fripy-purple: #5e17eb;
+  --b-star: rgb(255, 208, 20);
+}
+
+* {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  -webkit-font-smoothing: none;
+}
+
+body {
+  background-color: #efe6f7;
+  font-family: "BrickSans", monospace;
+}
+
+.pixel-box {
+  position: relative;
+  display: flex;
+  background-color: var(--b-color);
+  padding: var(--border-y) var(--border-x);
+  box-shadow:
+    calc(var(--p) * -2) 0 0 calc(var(--p) * -1) var(--b-color),
+    calc(var(--p) * 2) 0 0 calc(var(--p) * -1) var(--b-color),
+    0 calc(var(--p) * -2) 0 calc(var(--p) * -1) var(--b-color),
+    0 calc(var(--p) * 2) 0 calc(var(--p) * -1) var(--b-color),
+    calc(var(--p) * -3) 0 0 calc(var(--p) * -2) var(--b-color),
+    calc(var(--p) * 3) 0 0 calc(var(--p) * -2) var(--b-color),
+    0 calc(var(--p) * -3) 0 calc(var(--p) * -2) var(--b-color),
+    0 calc(var(--p) * 3) 0 calc(var(--p) * -2) var(--b-color);
+}
+.star-theme {
+  --b-color: #ffd014;
+  --i-bg: #e6a22b !important;
+}
+
+.pixel-inner {
+  --i-bg: #f4edfb; /* اللون الافتراضي لداخل المهمة */
+  position: relative;
+  overflow: hidden;
+  background-color: var(--i-bg);
+  height: 100%;
+  width: 100%;
+  min-height: 2.5rem;
+  clip-path: polygon(
+    calc(var(--p) * 2) 0,
+    calc(var(--p) * 2) var(--p),
+    var(--p) var(--p),
+    var(--p) calc(var(--p) * 2),
+    0 calc(var(--p) * 2),
+    0 calc(100% - var(--p) * 2),
+    var(--p) calc(100% - var(--p) * 2),
+    var(--p) calc(100% - var(--p)),
+    calc(var(--p) * 2) calc(100% - var(--p)),
+    calc(var(--p) * 2) 100%,
+    calc(100% - var(--p) * 2) 100%,
+    calc(100% - var(--p) * 2) calc(100% - var(--p)),
+    calc(100% - var(--p)) calc(100% - var(--p)),
+    calc(100% - var(--p)) calc(100% - var(--p) * 2),
+    100% calc(100% - var(--p) * 2),
+    100% calc(var(--p) * 2),
+    calc(100% - var(--p)) calc(var(--p) * 2),
+    calc(100% - var(--p)) var(--p),
+    calc(100% - var(--p) * 2) var(--p),
+    calc(100% - var(--p) * 2) 0
+  );
+  clip-path: polygon(
+    calc(var(--p) * 2) 0,
+    calc(var(--p) * 2) var(--p),
+    var(--p) var(--p),
+    var(--p) calc(var(--p) * 2),
+    0 calc(var(--p) * 2),
+    0 calc(100% - var(--p) * 2),
+    var(--p) calc(100% - var(--p) * 2),
+    var(--p) calc(100% - var(--p)),
+    calc(var(--p) * 2) calc(100% - var(--p)),
+    calc(var(--p) * 2) 100%,
+    calc(100% - var(--p) * 2) 100%,
+    calc(100% - var(--p) * 2) calc(100% - var(--p)),
+    calc(100% - var(--p)) calc(100% - var(--p)),
+    calc(100% - var(--p)) calc(100% - var(--p) * 2),
+    100% calc(100% - var(--p) * 2),
+    100% calc(var(--p) * 2),
+    calc(100% - var(--p)) calc(var(--p) * 2),
+    calc(100% - var(--p)) var(--p),
+    calc(100% - var(--p) * 2) var(--p),
+    calc(100% - var(--p) * 2) 0
+  );
+}
+
+.pixel-inner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: #c182ee;
+  transition: width 0.4s ease-out;
+  z-index: -1;
+}
+
+.btn-add {
+  --b-color: #4a00e0;
+  cursor: pointer;
+}
+
+.btn-add .pixel-inner {
+  --i-bg: #efe6f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #5e17eb;
+}
+
+.btn-add:hover .pixel-inner {
+  --i-bg: #c4b5e3;
+}
+
+.hidden-pixel-input {
+  display: none;
+}
+
+.pixel-checkbox-display {
+  width: 50px;
+  height: 52px;
+  cursor: pointer;
+  background: transparent;
+  border: 4px solid var(--b-color);
+  box-shadow:
+    calc(var(--p) * -2) 0 0 calc(var(--p) * -1) var(--b-color),
+    calc(var(--p) * 2) 0 0 calc(var(--p) * -1) var(--b-color),
+    0 calc(var(--p) * -2) 0 calc(var(--p) * -1) var(--b-color),
+    0 calc(var(--p) * 2) 0 calc(var(--p) * -1) var(--b-color),
+    calc(var(--p) * -3) 0 0 calc(var(--p) * -2) var(--b-color),
+    calc(var(--p) * 3) 0 0 calc(var(--p) * -2) var(--b-color),
+    0 calc(var(--p) * -3) 0 calc(var(--p) * -2) var(--b-color),
+    0 calc(var(--p) * 3) 0 calc(var(--p) * -2) var(--b-color);
+}
+
+.checkmark-icon {
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+}
+
+.options-icon {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.hidden-pixel-input:checked + .pixel-checkbox-display .checkmark-icon {
+  visibility: visible;
+  animation: checkmarkPop 0.3s ease-out;
+}
+
+.task-text {
+  position: relative;
+  transition: color 0.2s;
+  display: inline-block;
+
+  font-size: 14px !important;
+  line-height: 1.3 !important;
+  max-width: calc(100% - 60px) !important;
+  overflow-wrap: break-word !important;
+  word-break: break-word !important;
+}
+
+.task-text::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 55%;
+  width: 0px;
+  height: 4px;
+  background-color: var(--fripy-purple);
+  image-rendering: pixelated;
+  transition: 0.5s ease-in-out;
+  pointer-events: none;
+}
+
+.hidden-pixel-input:checked ~ .task-text {
+  color: #f2d3f3;
+}
+
+.hidden-pixel-input:checked ~ .task-text::after {
+  width: 100%;
+}
+.pixel-box.task-checked {
+  --b-color: #5e17eb;
+  transition: width 0.4s ease-out;
+}
+
+.pixel-box.task-checked .pixel-inner::before {
+  width: 100%;
+}
+
+.pixel-box.task-checked .pixel-checkbox-display {
+  border-color: #5d22d3;
+  position: relative;
+  z-index: 1;
+}
+
+.pixel-box.task-checked .task-text {
+  position: relative;
+  z-index: 1;
+}
+@keyframes checkmarkPop {
+  0% {
+    opacity: 0;
+    transform: scale(4) rotate(-45deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@font-face {
+  font-family: "BrickSans";
+  src: url("/fonts/NTBrickSans.ttf") format("truetype");
+  font-display: swap;
+}
+@media (max-width: 640px) {
+  :root {
+    --p: 3px;
+    --border-y: calc(var(--p) * 2);
+  }
+}
+
+.filter-tabs {
+  display: flex;
+  gap: 8px;
+}
+
+.filter-tab {
+  padding: 8px 24px;
+  font-weight: bold;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  color: #5e17eb;
+}
+
+.filter-tab-active {
+  background: #c4b5e3;
+}
+.filter-input {
+  background-color: #c4b5e3;
+  border: solid 0.2em #4a00e0;
+}
+.task-actions {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  padding-right: 18px;
+
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+  pointer-events: none;
+  background: transparent;
+}
+
+.pixel-box.options-open .task-actions {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.star-btn,
+.delete-btn {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  border: 4px solid #f59e0b;
+  box-shadow:
+    calc(var(--p) * -2) 0 0 calc(var(--p) * -1) var(--b-star),
+    calc(var(--p) * 2) 0 0 calc(var(--p) * -1) var(--b-star),
+    0 calc(var(--p) * -2) 0 calc(var(--p) * -1) var(--b-star),
+    0 calc(var(--p) * 2) 0 calc(var(--p) * -1) var(--b-star),
+    calc(var(--p) * -3) 0 0 calc(var(--p) * -2) var(--b-star),
+    calc(var(--p) * 3) 0 0 calc(var(--p) * -2) var(--b-star),
+    0 calc(var(--p) * -3) 0 calc(var(--p) * -2) var(--b-star),
+    0 calc(var(--p) * 3) 0 calc(var(--p) * -2) var(--b-star);
+  clip-path: polygon(
+    calc(var(--p) * 2) 0,
+    calc(var(--p) * 2) var(--p),
+    var(--p) var(--p),
+    var(--p) calc(var(--p) * 2),
+    0 calc(var(--p) * 2),
+    0 calc(100% - var(--p) * 2),
+    var(--p) calc(100% - var(--p) * 2),
+    var(--p) calc(100% - var(--p)),
+    calc(var(--p) * 2) calc(100% - var(--p)),
+    calc(var(--p) * 2) 100%,
+    calc(100% - var(--p) * 2) 100%,
+    calc(100% - var(--p) * 2) calc(100% - var(--p)),
+    calc(100% - var(--p)) calc(100% - var(--p)),
+    calc(100% - var(--p)) calc(100% - var(--p) * 2),
+    100% calc(100% - var(--p) * 2),
+    100% calc(var(--p) * 2),
+    calc(100% - var(--p)) calc(var(--p) * 2),
+    calc(100% - var(--p)) var(--p),
+    calc(100% - var(--p) * 2) var(--p),
+    calc(100% - var(--p) * 2) 0
+  );
+  background: #ffd014;
+}
+
+.delete-btn {
+  background: #ff4444;
+  border-color: #cc0000;
+  color: white;
+}
+
+.step-segment {
+  transition: background-color 0.3s ease;
+}
+.comp-change {
+  animation: countUp 2s ease-out forwards;
+}
+.status-anchor {
+  height: 30px;
+  overflow: hidden;
+  margin: 0 !important;
+}
+
+.server-down {
+  background-color: #cc0000;
+}
+.server-works {
+  background-color: green;
+  overflow: hidden;
+  max-height: 0;
+  margin-top: 0;
+  opacity: 0;
+}
+.server-works.collapse-in {
+  animation: slideInCollapse 0.5s ease-out forwards;
+}
+
+@keyframes slideInCollapse {
+  0% {
+    max-height: 0;
+    margin-top: 0;
+    opacity: 0;
+  }
+  100% {
+    max-height: 100px;
+    
+    opacity: 1;
+  }
+}
+
+.server-works.collapse-out{
+  animation: slideUpCollapse 0.5s ease-in-out forwards;
+}
+
+@keyframes slideUpCollapse {
+  0% {
+    max-height: 100px;
+    
+    opacity: 1;
+  }
+  100% {
+    max-height: 0;
+    margin-top: 0;
+     opacity: 0;
+  }
+}
