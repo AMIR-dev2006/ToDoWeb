@@ -8,14 +8,14 @@ const ScalableStepsBar = ({ stepsStatus, activeColor = '', inactiveColor = '' })
         {stepsStatus.map((isActive, index) => (
           <div
             key={index}
-            className="flex-1 h-[6px] step-segment"
+            className="flex-1 h-[5px] step-segment"
             style={{
               backgroundColor: isActive ? activeColor : inactiveColor,
             }}
           />
         ))}
       </div>
-      <div className=" text-xl font-bold text-[#5e17eb]">
+      <div className=" text-l font-bold text-[#5e17eb]">
       {stepsStatus.filter(Boolean).length}<span className="comp-change text-[#9b88c2]">/{stepsStatus.length} </span > 
       </div>
     </div>

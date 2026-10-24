@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const AddBar = ({ setTaskmsng, Taskmsng, filter }) => {
+const AddBar = ({ setTaskmsng, Taskmsng, catego }) => {
   const [Task, setTask] = useState("");
 
   const handleClick = () => {
@@ -11,7 +11,7 @@ const AddBar = ({ setTaskmsng, Taskmsng, filter }) => {
       text: Task.trim(),
       completed: false,
       starred: false,
-      category: filter
+      category: catego
     };
 
     setTaskmsng([...Taskmsng, newTask]);
@@ -35,7 +35,7 @@ const AddBar = ({ setTaskmsng, Taskmsng, filter }) => {
             placeholder="add a task!"
             onChange={(e) => setTask(e.target.value)}
             onKeyDown={enterClicked}
-            className="w-full bg-transparent outline-none text-gray-600 placeholder-gray-400 text-xl font-bold"
+            className="w-full bg-transparent outline-none text-gray-600 placeholder-gray-400 text-l font-bold"
           />
         </div>
       </div>
@@ -43,7 +43,7 @@ const AddBar = ({ setTaskmsng, Taskmsng, filter }) => {
         <div className="pixel-inner px-6 py-3">
           <button
             onClick={handleClick}
-            className="text-xl uppercase tracking-widest outline-none"
+            className="text-l uppercase tracking-widest outline-none"
           >
             ADD
           </button>

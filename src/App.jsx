@@ -9,11 +9,12 @@ import { useState, useEffect } from "react";
 
 function App() {
   const [Taskmsng, setTaskmsng] = useState([]);
-  const [filter, setFilter] = useState("all");
+  const [catego, setCatego] = useState("all");
+  const [categomsng, setCategomsng] = useState([]);
   const [apiError, setApiError] = useState(null);
   const [isVisible, setIsVisible] = useState(true);
   const [isExiting, setIsExiting] = useState(false);
-
+  
   useEffect(() => {
     const animationTimer = setTimeout(() => {
       setIsExiting(true);
@@ -27,9 +28,15 @@ function App() {
 
   useEffect(() => {
     try {
-      const stored = localStorage.getItem("tasks");
-      if (stored) {
-        setTaskmsng(JSON.parse(stored));
+      const storedT = localStorage.getItem("tasks");
+      const storedC = localStorage.getItem("categos");
+      
+      if (storedT) {
+        setTaskmsng(JSON.parse(storedT));
+      }
+      
+      if (storedC) {
+        setCategomsng(Array.isArray(JSON.parse(storedC)) ? JSON.parse(storedC) : []);
       }
     } catch (error) {
       setApiError(error.message);
@@ -39,6 +46,10 @@ function App() {
   const syncTasks = (next) => {
     setTaskmsng(next);
     localStorage.setItem("tasks", JSON.stringify(next));
+  };
+  const syncC = (next) => {
+    setCategomsng(next);
+    localStorage.setItem("categos", JSON.stringify(next));
   };
 
   return (
@@ -51,14 +62,14 @@ function App() {
 
         <StatusBanner apiError={apiError} isVisible={isVisible} isExiting={isExiting} />
 
-        <AddBar setTaskmsng={syncTasks} Taskmsng={Taskmsng} filter={filter} />
+        <AddBar setTaskmsng={syncTasks} Taskmsng={Taskmsng} catego={catego} />
 
-        <FilterTabs filter={filter} setFilter={setFilter} />
+        <FilterTabs catego={catego} setCatego={setCatego} categomsng={categomsng} setCategomsng={syncC} />
 
         <TodoList
           Taskmsng={Taskmsng}
           setTaskmsng={syncTasks}
-          filter={filter}
+          catego={catego}
         />
       </div>
     </div>

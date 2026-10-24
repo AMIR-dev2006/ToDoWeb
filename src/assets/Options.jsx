@@ -1,5 +1,5 @@
 // src/assets/PixOptions.jsx
-export default function Options({ width = 45, height = 45, color = "#5E17EB", isinStar }) {
+export default function Options({ width = 24, height = 24, color = "#5E17EB", isinStar }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

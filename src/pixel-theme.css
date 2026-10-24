@@ -1,5 +1,5 @@
 :root {
-  --p: 4px;
+  --p: 2.2px !important;
   --border-y: calc(var(--p) * 1.5);
   --border-x: calc(var(--border-y) / 2);
   --b-color: #c4b5e3;
@@ -150,11 +150,7 @@ body {
   visibility: hidden;
 }
 
-.options-icon {
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-}
+
 
 .hidden-pixel-input:checked + .pixel-checkbox-display .checkmark-icon {
   visibility: visible;
@@ -243,7 +239,7 @@ body {
 .filter-tab {
   padding: 8px 24px;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   cursor: pointer;

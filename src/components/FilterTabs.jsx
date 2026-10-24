@@ -4,45 +4,43 @@ import Pixstar from "../assets/Pixstar";
 import Ww from "./Pixfolder";
 
 const FilterTabs = (props) => {
-  const [buttons, setButtons] = useState([]);
+  const { catego, setCatego, categomsng, setCategomsng } = props;
   const inputRef = useRef(null);
 
-  // Auto-focus the input box as soon as it appears
   useEffect(() => {
     if (inputRef.current) inputRef.current.focus();
-  }, [buttons]);
+  }, [categomsng]);
 
-  // 1. Add a temporary object to state
   const generateNew = () => {
-    setButtons([...buttons, { id: Date.now(), name: "", isEditing: true }]);
+    setCategomsng([...categomsng, { id: Date.now(), name: "", isEditing: true }]);
   };
 
-  // 2. Save text and turn it into a button when user hits Enter
   const saveName = (id, text) => {
-    setButtons(
-      buttons.map((b) =>
+    setCategomsng(
+      categomsng.map((b) =>
         b.id === id ? { ...b, name: text, isEditing: false } : b,
       ),
     );
   };
+
   return (
     <div className="filter-tabs  overflow-hidden ">
       <div className="filter-tabs   overflow-x-auto whitespace-nowrap  ">
         <button
-          className={`filter-tab  ${props.filter === "all" ? "filter-tab-active" : ""} `}
-          onClick={() => props.setFilter("all")}
+          className={`filter-tab  ${props.catego === "all" ? "filter-tab-active" : ""} `}
+          onClick={() => props.setCatego("all")}
         >
           All
         </button>
         <button
-          className={`filter-tab ${props.filter === "starred" ? "filter-tab-active" : ""} `}
-          onClick={() => props.setFilter("starred")}
+          className={`filter-tab ${props.catego === "starred" ? "filter-tab-active" : ""} `}
+          onClick={() => props.setCatego("starred")}
         >
           <Pixstar isStarred={1} />
         </button>
 
         <div className="filter-tabs">
-          {buttons.map((b) => (
+          {(Array.isArray(categomsng) ? categomsng : []).map((b) => (
             <div className="filter-tab    " key={b.id}>
               {b.isEditing ? (
                 <input
@@ -55,8 +53,8 @@ const FilterTabs = (props) => {
                 />
               ) : (
                 <button
-                  className={`filter-tab ${props.filter === b.name ? "filter-tab-active" : ""} `}
-                  onClick={() => props.setFilter(b.name)}
+                  className={`filter-tab ${props.catego === b.name ? "filter-tab-active" : ""} `}
+                  onClick={() => props.setCatego(b.name)}
                 >
                   {b.name}
                 </button>

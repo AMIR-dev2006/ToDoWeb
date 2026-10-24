@@ -6,7 +6,7 @@ import Pixfolder from "./Pixfolder.jsx";
 import ScalableStepsBar from "./ScalableStepsBar";
 import { useState, useEffect } from "react";
 
-const TodoList = ({ Taskmsng, setTaskmsng, filter }) => {
+const TodoList = ({ Taskmsng, setTaskmsng, catego }) => {
   const deleteTask = (id) => {
     setTaskmsng(Taskmsng.filter((t) => t.id !== id));
   };
@@ -47,10 +47,10 @@ const TodoList = ({ Taskmsng, setTaskmsng, filter }) => {
   const [mySteps, setMySteps] = useState([false]);
 
   const ffTasks = () => {
-    if (filter === "starred") {
+    if (catego === "starred") {
       return Taskmsng.filter((t) => t.starred);
-    } else if (filter !== "all") {
-      return Taskmsng.filter((t) => t.category === filter);
+    } else if (catego !== "all") {
+      return Taskmsng.filter((t) => t.category === catego);
     } else {
       return Taskmsng;
     }
@@ -63,18 +63,18 @@ const TodoList = ({ Taskmsng, setTaskmsng, filter }) => {
     } else {
       setMySteps(filteredTasks.map((t) => t.completed));
     }
-  }, [filter, Taskmsng]);
+  }, [catego, Taskmsng]);
 
   const emptyMessage =
-    filter === "all"
+    catego === "all"
       ? "No tasks yet. Add one above!"
-      : `No tasks in "${filter}" yet.`;
+      : `No tasks in "${catego}" yet.`;
 
   return (
     <div className="space-y-4">
       {filteredTasks.length === 0 ? (
         <div className="pixel-box">
-          <div className="pixel-inner px-4 py-3 text-gray-400 text-center text-lg">
+          <div className="pixel-inner px-4 py-3 text-gray-400 text-center text-l">
             {emptyMessage}
           </div>
         </div>
@@ -85,13 +85,21 @@ const TodoList = ({ Taskmsng, setTaskmsng, filter }) => {
             activeColor="#5e17eb"
             inactiveColor="#c4b5e3"
           />
-          {filteredTasks.map((task)  => (
+          <div className="flex items-center" >
+            <div className="font-bold text-my-purple uppercase">{catego}</div>
+            <div className="flex-1 border-b-4 border-my-purple-light h-0 ml-4"></div>
+             <Options
+                    className="options-icon-small"
+                    
+                  />
+          </div>
+          {filteredTasks.map((task) => (
             <div
               key={task.id}
-              className={`pixel-box ${task.completed ? "task-checked " : ""} ${activeOptionsId === task.id ? "options-open" : ""} ${filter === "starred" ? "star-theme" : ""}`}
+              className={`pixel-box ${task.completed ? "task-checked " : ""} ${activeOptionsId === task.id ? "options-open" : ""} ${catego === "starred" ? "star-theme" : ""}`}
             >
               <div
-                className={`pixel-inner px-4 py-3 flex items-center gap-4 ${filter === "starred" ? "star-theme" : ""}`}
+                className={`pixel-inner px-4 py-3 flex items-center gap-4 ${catego === "starred" ? "star-theme" : ""}`}
               >
                 <label className="pixel-checkbox-wrapper flex items-center flex-grow">
                   <input
@@ -117,7 +125,7 @@ const TodoList = ({ Taskmsng, setTaskmsng, filter }) => {
                 >
                   <Options
                     className="options-icon"
-                    isinStar={filter === "starred"}
+                    isinStar={catego === "starred"}
                   />
                 </button>
               </div>
